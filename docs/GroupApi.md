@@ -33,8 +33,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -81,8 +81,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -133,8 +133,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -184,8 +184,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -232,8 +232,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -284,8 +284,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -336,8 +336,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -388,8 +388,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -436,8 +436,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -490,8 +490,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
@@ -543,8 +543,8 @@ from sparkworks_client.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
