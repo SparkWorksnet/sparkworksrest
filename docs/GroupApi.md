@@ -1,28 +1,28 @@
-# sparkworks_client.UnitAPIApi
+# sparkworks_client.GroupApi
 
 All URIs are relative to *https://api.sparkworks.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_unit**](UnitAPIApi.md#create_unit) | **POST** /v2/unit | Create a Unit
-[**create_unit_conversion**](UnitAPIApi.md#create_unit_conversion) | **POST** /v2/conversion | Create a Unit Conversion
-[**delete_unit**](UnitAPIApi.md#delete_unit) | **DELETE** /v2/unit/{uuid} | Delete a Unit by its UUID
-[**delete_unit_conversion**](UnitAPIApi.md#delete_unit_conversion) | **DELETE** /v2/conversion/{uuid} | Delete a Unit Conversion by its UUID
-[**get_unit_by_u_uid**](UnitAPIApi.md#get_unit_by_u_uid) | **GET** /v2/unit/{uuid} | Retrieve a Unit by its UUID
-[**get_unit_conversion_by_u_uid**](UnitAPIApi.md#get_unit_conversion_by_u_uid) | **GET** /v2/conversion/{uuid} | Retrieve a Unit Conversion by its UUID
-[**list_all_unit_conversions**](UnitAPIApi.md#list_all_unit_conversions) | **GET** /v2/conversion | Retrieve a collection of Unit Conversions
-[**list_all_units**](UnitAPIApi.md#list_all_units) | **GET** /v2/unit | Retrieve a collection of Units
-[**query_unit_conversions**](UnitAPIApi.md#query_unit_conversions) | **POST** /v2/conversion/query | Retrieve a List of Unit Conversions by a query
-[**query_units**](UnitAPIApi.md#query_units) | **POST** /v2/unit/query | Retrieve a Unit by a query
-[**update_unit**](UnitAPIApi.md#update_unit) | **POST** /v2/unit/{uuid} | Update Unit
+[**count_groups**](GroupApi.md#count_groups) | **GET** /v2/group/count | Count Groups
+[**create_group**](GroupApi.md#create_group) | **POST** /v2/group | Create a new Group
+[**delete_group_branch**](GroupApi.md#delete_group_branch) | **DELETE** /v2/group/{uuid} | Delete Group branch by the Group UUID
+[**get_all_groups**](GroupApi.md#get_all_groups) | **GET** /v2/group | Retrieve a collection of Groups
+[**get_group_by_uuid**](GroupApi.md#get_group_by_uuid) | **GET** /v2/group/{uuid} | Retrieve a Group by its UUID
+[**get_group_gateways**](GroupApi.md#get_group_gateways) | **GET** /v2/group/{uuid}/gateway | Get the Gateways of a Group by the Group UUID
+[**get_group_resources**](GroupApi.md#get_group_resources) | **GET** /v2/group/{uuid}/resource | Get the Resources of a Group by the Group UUID
+[**get_main_level_groups**](GroupApi.md#get_main_level_groups) | **GET** /v2/group/main | List the main level Groups
+[**get_subgroups**](GroupApi.md#get_subgroups) | **GET** /v2/group/{uuid}/subgroup/{depth} | Get the Subgroups of a Group by the Group UUID
+[**move_group_branch**](GroupApi.md#move_group_branch) | **POST** /v2/group/move/{sourceUUID}/{targetUUID} | Move Group Branch
+[**update_group**](GroupApi.md#update_group) | **POST** /v2/group/{uuid} | Update Group
 
 
-# **create_unit**
-> UnitDTO create_unit(unit_create_dto)
+# **count_groups**
+> int count_groups()
 
-Create a Unit
+Count Groups
 
-A Spark Works Accounts authenticated user is able to create a Unit. 
+A Spark Works Accounts authenticated common user is able to retrieve the number of Groups that has permissions on. An administrator is able to retrieve the number of all Groups.
 
 ### Example
 ```python
@@ -37,26 +37,74 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-unit_create_dto = sparkworks_client.UnitCreateDTO() # UnitCreateDTO | Unit Creation API Model
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
 
 try:
-    # Create a Unit
-    api_response = api_instance.create_unit(unit_create_dto)
+    # Count Groups
+    api_response = api_instance.count_groups()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling UnitAPIApi->create_unit: %s\n" % e)
+    print("Exception when calling GroupApi->count_groups: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**int**
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_group**
+> GroupDTO create_group(group_create_dto)
+
+Create a new Group
+
+A Spark Works authenticated user is able to request a new Group creation
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+group_create_dto = sparkworks_client.GroupCreateDTO() # GroupCreateDTO | Group Creation API Model
+
+try:
+    # Create a new Group
+    api_response = api_instance.create_group(group_create_dto)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GroupApi->create_group: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unit_create_dto** | [**UnitCreateDTO**](UnitCreateDTO.md)| Unit Creation API Model | 
+ **group_create_dto** | [**GroupCreateDTO**](GroupCreateDTO.md)| Group Creation API Model | 
 
 ### Return type
 
-[**UnitDTO**](UnitDTO.md)
+[**GroupDTO**](GroupDTO.md)
 
 ### Authorization
 
@@ -69,64 +117,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_unit_conversion**
-> UnitConversionDTO create_unit_conversion(unit_conversion_create_dto)
+# **delete_group_branch**
+> delete_group_branch(uuid)
 
-Create a Unit Conversion
+Delete Group branch by the Group UUID
 
-A Spark Works Accounts authenticated user is able to create a Unit Conversion. 
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-unit_conversion_create_dto = sparkworks_client.UnitConversionCreateDTO() # UnitConversionCreateDTO | Unit Conversion Create API Model
-
-try:
-    # Create a Unit Conversion
-    api_response = api_instance.create_unit_conversion(unit_conversion_create_dto)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->create_unit_conversion: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **unit_conversion_create_dto** | [**UnitConversionCreateDTO**](UnitConversionCreateDTO.md)| Unit Conversion Create API Model | 
-
-### Return type
-
-[**UnitConversionDTO**](UnitConversionDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_unit**
-> delete_unit(uuid)
-
-Delete a Unit by its UUID
-
-A Spark Works Accounts authenticated user is able to delete a Unit by its UUID.
+A Spark Works Accounts authenticated common user is able to remove a Spark Works Group branch that has permissions on by its UUID. An administrator is able to remove any Group branch of the platform
 
 ### Example
 ```python
@@ -141,21 +137,21 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The Unit UUID
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Group UUID
 
 try:
-    # Delete a Unit by its UUID
-    api_instance.delete_unit(uuid)
+    # Delete Group branch by the Group UUID
+    api_instance.delete_group_branch(uuid)
 except ApiException as e:
-    print("Exception when calling UnitAPIApi->delete_unit: %s\n" % e)
+    print("Exception when calling GroupApi->delete_group_branch: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The Unit UUID | 
+ **uuid** | **str**| The Group UUID | 
 
 ### Return type
 
@@ -172,12 +168,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_unit_conversion**
-> delete_unit_conversion(uuid)
+# **get_all_groups**
+> list[GroupDTO] get_all_groups()
 
-Delete a Unit Conversion by its UUID
+Retrieve a collection of Groups
 
-A Spark Works Accounts authenticated user is able to delete a Unit Conversion by its UUID.
+A Spark Works Accounts authenticated common user is able to retrieve all of the Platform Groups that has permissions on. An administrator is able to query all of the platform Groups
 
 ### Example
 ```python
@@ -192,21 +188,329 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The Unit Conversion UUID
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
 
 try:
-    # Delete a Unit Conversion by its UUID
-    api_instance.delete_unit_conversion(uuid)
+    # Retrieve a collection of Groups
+    api_response = api_instance.get_all_groups()
+    pprint(api_response)
 except ApiException as e:
-    print("Exception when calling UnitAPIApi->delete_unit_conversion: %s\n" % e)
+    print("Exception when calling GroupApi->get_all_groups: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**list[GroupDTO]**](GroupDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_group_by_uuid**
+> GroupDTO get_group_by_uuid(uuid)
+
+Retrieve a Group by its UUID
+
+A Spark Works Accounts authenticated common user is able to retrieve a Group that has permissions on by its UUID. An administrator is able to get any Group by its UUID.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Group UUID
+
+try:
+    # Retrieve a Group by its UUID
+    api_response = api_instance.get_group_by_uuid(uuid)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GroupApi->get_group_by_uuid: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The Unit Conversion UUID | 
+ **uuid** | **str**| The Group UUID | 
+
+### Return type
+
+[**GroupDTO**](GroupDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_group_gateways**
+> list[GatewayDTO] get_group_gateways(uuid)
+
+Get the Gateways of a Group by the Group UUID
+
+A Spark Works Accounts authenticated common user is able to retrieve the Gateways of Group that has permissions on by its UUID. An administrator is able to retrieve the Gateways of any Group.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Group UUID
+
+try:
+    # Get the Gateways of a Group by the Group UUID
+    api_response = api_instance.get_group_gateways(uuid)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GroupApi->get_group_gateways: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The Group UUID | 
+
+### Return type
+
+[**list[GatewayDTO]**](GatewayDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_group_resources**
+> list[ResourceDTO] get_group_resources(uuid)
+
+Get the Resources of a Group by the Group UUID
+
+A Spark Works Accounts authenticated common user is able to retrieve the Resources of Group that has permissions on by its UUID. An administrator is able to retrieve the Resources of any Group.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Group UUID
+
+try:
+    # Get the Resources of a Group by the Group UUID
+    api_response = api_instance.get_group_resources(uuid)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GroupApi->get_group_resources: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The Group UUID | 
+
+### Return type
+
+[**list[ResourceDTO]**](ResourceDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_main_level_groups**
+> list[GroupDTO] get_main_level_groups()
+
+List the main level Groups
+
+A Spark Works Accounts authenticated common user is able to list the Groups of main level that has permissions on. An administrator is able to list all the Groups of main level.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+
+try:
+    # List the main level Groups
+    api_response = api_instance.get_main_level_groups()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GroupApi->get_main_level_groups: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**list[GroupDTO]**](GroupDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_subgroups**
+> list[GroupDTO] get_subgroups(uuid, depth)
+
+Get the Subgroups of a Group by the Group UUID
+
+A Spark Works Accounts authenticated common user is able to retrieve the Subgroups of Group that has permissions on by its UUID. An administrator is able to retrieve the Subgroups of any Group.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Group UUID
+depth = 56 # int | depth
+
+try:
+    # Get the Subgroups of a Group by the Group UUID
+    api_response = api_instance.get_subgroups(uuid, depth)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GroupApi->get_subgroups: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The Group UUID | 
+ **depth** | **int**| depth | 
+
+### Return type
+
+[**list[GroupDTO]**](GroupDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **move_group_branch**
+> move_group_branch(source_uuid, target_uuid)
+
+Move Group Branch
+
+A Spark Works Accounts authenticated common user is able to move a Spark Works Group branch that has permissions on under another Group that has permissions on. An administrator is able to move any Group of the platform under any other Group
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+source_uuid = 'source_uuid_example' # str | The source Group UUID
+target_uuid = 'target_uuid_example' # str | The target Group UUID
+
+try:
+    # Move Group Branch
+    api_instance.move_group_branch(source_uuid, target_uuid)
+except ApiException as e:
+    print("Exception when calling GroupApi->move_group_branch: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source_uuid** | **str**| The source Group UUID | 
+ **target_uuid** | **str**| The target Group UUID | 
 
 ### Return type
 
@@ -218,321 +522,17 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_unit_by_u_uid**
-> UnitDTO get_unit_by_u_uid(uuid)
-
-Retrieve a Unit by its UUID
-
-A Spark Works Accounts authenticated common user is able to retrieve a Unit that has permissions on by its UUID. An administrator is able to get any Unit by its UUID.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The Unit UUID
-
-try:
-    # Retrieve a Unit by its UUID
-    api_response = api_instance.get_unit_by_uuid(uuid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->get_unit_by_u_uid: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The Unit UUID | 
-
-### Return type
-
-[**UnitDTO**](UnitDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_unit_conversion_by_u_uid**
-> UnitConversionDTO get_unit_conversion_by_u_uid(uuid)
-
-Retrieve a Unit Conversion by its UUID
-
-A Spark Works Accounts authenticated user is able to retrieve a Unit Conversion.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The Unit Conversion UUID
-
-try:
-    # Retrieve a Unit Conversion by its UUID
-    api_response = api_instance.get_unit_conversion_by_uuid(uuid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->get_unit_conversion_by_u_uid: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The Unit Conversion UUID | 
-
-### Return type
-
-[**UnitConversionDTO**](UnitConversionDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_all_unit_conversions**
-> list[UnitConversionDTO] list_all_unit_conversions()
-
-Retrieve a collection of Unit Conversions
-
-A Spark Works Accounts authenticated user is able to retrieve all of the Platform Unit Conversions. 
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-
-try:
-    # Retrieve a collection of Unit Conversions
-    api_response = api_instance.list_all_unit_conversions()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->list_all_unit_conversions: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**list[UnitConversionDTO]**](UnitConversionDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_all_units**
-> list[UnitDTO] list_all_units()
-
-Retrieve a collection of Units
-
-A Spark Works Accounts authenticated user is able to retrieve all of the Platform Units. 
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-
-try:
-    # Retrieve a collection of Units
-    api_response = api_instance.list_all_units()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->list_all_units: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**list[UnitDTO]**](UnitDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **query_unit_conversions**
-> list[UnitConversionDTO] query_unit_conversions(unit_conversion_query_dto)
-
-Retrieve a List of Unit Conversions by a query
-
-A Spark Works Accounts authenticated user is able to retrieve a List of Unit Conversion.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-unit_conversion_query_dto = sparkworks_client.UnitConversionQueryDTO() # UnitConversionQueryDTO | Unit Conversion Query API Model
-
-try:
-    # Retrieve a List of Unit Conversions by a query
-    api_response = api_instance.query_unit_conversions(unit_conversion_query_dto)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->query_unit_conversions: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **unit_conversion_query_dto** | [**UnitConversionQueryDTO**](UnitConversionQueryDTO.md)| Unit Conversion Query API Model | 
-
-### Return type
-
-[**list[UnitConversionDTO]**](UnitConversionDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
  - **Content-Type**: application/json
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **query_units**
-> UnitDTO query_units(unit_query_dto)
+# **update_group**
+> GroupDTO update_group(uuid, group_update_dto)
 
-Retrieve a Unit by a query
+Update Group
 
-A Spark Works Accounts authenticated user is able to retrieve a Unit. 
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-unit_query_dto = sparkworks_client.UnitQueryDTO() # UnitQueryDTO | Unit Query API Model
-
-try:
-    # Retrieve a Unit by a query
-    api_response = api_instance.query_units(unit_query_dto)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UnitAPIApi->query_units: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **unit_query_dto** | [**UnitQueryDTO**](UnitQueryDTO.md)| Unit Query API Model | 
-
-### Return type
-
-[**UnitDTO**](UnitDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_unit**
-> UnitDTO update_unit(uuid, update_dto)
-
-Update Unit
-
-A Spark Works Accounts administrator is able to update a Unit by its UUID.
+A Spark Works Accounts authenticated common user is able to update a Group's values that has permission on. An administrator is able to update the values of any Group.
 
 ### Example
 ```python
@@ -547,28 +547,28 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.UnitAPIApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The Unit UUID
-update_dto = sparkworks_client.UnitUpdateDTO() # UnitUpdateDTO | updateDTO
+api_instance = sparkworks_client.GroupApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Group UUID
+group_update_dto = sparkworks_client.GroupUpdateDTO() # GroupUpdateDTO | groupUpdateDTO
 
 try:
-    # Update Unit
-    api_response = api_instance.update_unit(uuid, update_dto)
+    # Update Group
+    api_response = api_instance.update_group(uuid, group_update_dto)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling UnitAPIApi->update_unit: %s\n" % e)
+    print("Exception when calling GroupApi->update_group: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The Unit UUID | 
- **update_dto** | [**UnitUpdateDTO**](UnitUpdateDTO.md)| updateDTO | 
+ **uuid** | **str**| The Group UUID | 
+ **group_update_dto** | [**GroupUpdateDTO**](GroupUpdateDTO.md)| groupUpdateDTO | 
 
 ### Return type
 
-[**UnitDTO**](UnitDTO.md)
+[**GroupDTO**](GroupDTO.md)
 
 ### Authorization
 

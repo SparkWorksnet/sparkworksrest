@@ -1,10 +1,10 @@
-# sparkworks_client.RegistryAPIApi
+# sparkworks_client.RegistryApi
 
 All URIs are relative to *https://api.sparkworks.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**query_registry**](RegistryAPIApi.md#query_registry) | **POST** /v2/registry/query | Query the Registry Service to retrieve a collection of Resources records with their last read value and timestamp by their UUID
+[**query_registry**](RegistryApi.md#query_registry) | **POST** /v2/registry/query | Query the Registry Service to retrieve a collection of Resources records with their last read value and timestamp by their UUID
 
 
 # **query_registry**
@@ -27,7 +27,7 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.RegistryAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.RegistryApi(sparkworks_client.ApiClient(configuration))
 uuids = [sparkworks_client.list[str]()] # list[str] | uuids
 
 try:
@@ -35,7 +35,7 @@ try:
     api_response = api_instance.query_registry(uuids)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling RegistryAPIApi->query_registry: %s\n" % e)
+    print("Exception when calling RegistryApi->query_registry: %s\n" % e)
 ```
 
 ### Parameters

@@ -1,10 +1,10 @@
-# sparkworks_client.CommandAPIApi
+# sparkworks_client.CommandApi
 
 All URIs are relative to *https://api.sparkworks.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**send_command**](CommandAPIApi.md#send_command) | **POST** /v2/command/{uuid} | Send a command to a SparkWorks Actuator Resource
+[**send_command**](CommandApi.md#send_command) | **POST** /v2/command/{uuid} | Send a command to a SparkWorks Actuator Resource
 
 
 # **send_command**
@@ -27,7 +27,7 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.CommandAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.CommandApi(sparkworks_client.ApiClient(configuration))
 uuid = 'uuid_example' # str | The unique identifier of the Actuator Resource
 command_dto = sparkworks_client.CommandAPIModel() # CommandAPIModel | commandDto
 
@@ -36,7 +36,7 @@ try:
     api_response = api_instance.send_command(uuid, command_dto)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling CommandAPIApi->send_command: %s\n" % e)
+    print("Exception when calling CommandApi->send_command: %s\n" % e)
 ```
 
 ### Parameters

@@ -1,16 +1,16 @@
-# sparkworks_client.GatewayAPIApi
+# sparkworks_client.GatewayApi
 
 All URIs are relative to *https://api.sparkworks.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**count_gateways**](GatewayAPIApi.md#count_gateways) | **GET** /v2/gateway/count | Count Gateways
-[**create_gateway**](GatewayAPIApi.md#create_gateway) | **POST** /v2/gateway | Create a new Gateway
-[**delete_gateway**](GatewayAPIApi.md#delete_gateway) | **DELETE** /v2/gateway/{uuid} | Delete Gateway by its UUID
-[**get_gateway_resources**](GatewayAPIApi.md#get_gateway_resources) | **GET** /v2/gateway/{uuid}/resource | Get the Resources of a Gateway by the Gateway UUID
-[**query_gateways**](GatewayAPIApi.md#query_gateways) | **POST** /v2/gateway/query | Retrieve a Gateway by a query
-[**retrieve_gateways**](GatewayAPIApi.md#retrieve_gateways) | **GET** /v2/gateway/{uuid} | Retrieve a Gateway by its UUID
-[**retrieve_gateways1**](GatewayAPIApi.md#retrieve_gateways1) | **GET** /v2/gateway | Retrieve a collection of Gateways
+[**count_gateways**](GatewayApi.md#count_gateways) | **GET** /v2/gateway/count | Count Gateways
+[**create_gateway**](GatewayApi.md#create_gateway) | **POST** /v2/gateway | Create a new Gateway
+[**delete_gateway**](GatewayApi.md#delete_gateway) | **DELETE** /v2/gateway/{uuid} | Delete Gateway by its UUID
+[**get_all_gateways**](GatewayApi.md#get_all_gateways) | **GET** /v2/gateway | Retrieve a collection of Gateways
+[**get_gateway_by_uuid**](GatewayApi.md#get_gateway_by_uuid) | **GET** /v2/gateway/{uuid} | Retrieve a Gateway by its UUID
+[**get_gateway_resources**](GatewayApi.md#get_gateway_resources) | **GET** /v2/gateway/{uuid}/resource | Get the Resources of a Gateway by the Gateway UUID
+[**query_gateways**](GatewayApi.md#query_gateways) | **POST** /v2/gateway/query | Retrieve a Gateway by a query
 
 
 # **count_gateways**
@@ -33,14 +33,14 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
 
 try:
     # Count Gateways
     api_response = api_instance.count_gateways()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling GatewayAPIApi->count_gateways: %s\n" % e)
+    print("Exception when calling GatewayApi->count_gateways: %s\n" % e)
 ```
 
 ### Parameters
@@ -81,7 +81,7 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
 gateway_create_dto = sparkworks_client.GatewayCreateDTO() # GatewayCreateDTO | Gateway Creation API Model
 
 try:
@@ -89,7 +89,7 @@ try:
     api_response = api_instance.create_gateway(gateway_create_dto)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling GatewayAPIApi->create_gateway: %s\n" % e)
+    print("Exception when calling GatewayApi->create_gateway: %s\n" % e)
 ```
 
 ### Parameters
@@ -133,14 +133,14 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
 uuid = 'uuid_example' # str | The Gateway UUID
 
 try:
     # Delete Gateway by its UUID
     api_instance.delete_gateway(uuid)
 except ApiException as e:
-    print("Exception when calling GatewayAPIApi->delete_gateway: %s\n" % e)
+    print("Exception when calling GatewayApi->delete_gateway: %s\n" % e)
 ```
 
 ### Parameters
@@ -152,6 +152,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_gateways**
+> list[GatewayDTO] get_all_gateways()
+
+Retrieve a collection of Gateways
+
+A Spark Works Accounts authenticated common user is able to retrieve all of the Platform Gateways that has permissions on. An administrator is able to query all of the platform Gateways
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
+
+try:
+    # Retrieve a collection of Gateways
+    api_response = api_instance.get_all_gateways()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GatewayApi->get_all_gateways: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**list[GatewayDTO]**](GatewayDTO.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_gateway_by_uuid**
+> GatewayDTO get_gateway_by_uuid(uuid)
+
+Retrieve a Gateway by its UUID
+
+A Spark Works Accounts authenticated common user is able to retrieve a Gateway that has permissions on by its UUID. An administrator is able to get any Gateway by its UUID.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
+uuid = 'uuid_example' # str | The Gateway UUID
+
+try:
+    # Retrieve a Gateway by its UUID
+    api_response = api_instance.get_gateway_by_uuid(uuid)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GatewayApi->get_gateway_by_uuid: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The Gateway UUID | 
+
+### Return type
+
+[**GatewayDTO**](GatewayDTO.md)
 
 ### Authorization
 
@@ -184,7 +284,7 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
 uuid = 'uuid_example' # str | The Gateway UUID
 
 try:
@@ -192,7 +292,7 @@ try:
     api_response = api_instance.get_gateway_resources(uuid)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling GatewayAPIApi->get_gateway_resources: %s\n" % e)
+    print("Exception when calling GatewayApi->get_gateway_resources: %s\n" % e)
 ```
 
 ### Parameters
@@ -236,7 +336,7 @@ configuration = sparkworks_client.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
+api_instance = sparkworks_client.GatewayApi(sparkworks_client.ApiClient(configuration))
 gateway_query = sparkworks_client.GatewayQueryDTO() # GatewayQueryDTO | The Gateway Query
 
 try:
@@ -244,7 +344,7 @@ try:
     api_response = api_instance.query_gateways(gateway_query)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling GatewayAPIApi->query_gateways: %s\n" % e)
+    print("Exception when calling GatewayApi->query_gateways: %s\n" % e)
 ```
 
 ### Parameters
@@ -264,106 +364,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **retrieve_gateways**
-> GatewayDTO retrieve_gateways(uuid)
-
-Retrieve a Gateway by its UUID
-
-A Spark Works Accounts authenticated common user is able to retrieve a Gateway that has permissions on by its UUID. An administrator is able to get any Gateway by its UUID.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The Gateway UUID
-
-try:
-    # Retrieve a Gateway by its UUID
-    api_response = api_instance.retrieve_gateway_by_uuid(uuid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling GatewayAPIApi->retrieve_gateways: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The Gateway UUID | 
-
-### Return type
-
-[**GatewayDTO**](GatewayDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **retrieve_gateways1**
-> list[GatewayDTO] retrieve_gateways1()
-
-Retrieve a collection of Gateways
-
-A Spark Works Accounts authenticated common user is able to retrieve all of the Platform Gateways that has permissions on. An administrator is able to query all of the platform Gateways
-
-### Example
-```python
-from __future__ import print_function
-import time
-import sparkworks_client
-from sparkworks_client.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = sparkworks_client.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = sparkworks_client.GatewayAPIApi(sparkworks_client.ApiClient(configuration))
-
-try:
-    # Retrieve a collection of Gateways
-    api_response = api_instance.retrieve_gateways()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling GatewayAPIApi->retrieve_gateways1: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**list[GatewayDTO]**](GatewayDTO.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
