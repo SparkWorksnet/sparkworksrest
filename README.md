@@ -22,7 +22,7 @@ pip install sparkworksrest
 
 Then import the package:
 ```python
-import sparkworks_client 
+import sparkworks_client
 ```
 
 ## Setting up the access to the SparkWorks Rest API
@@ -162,12 +162,13 @@ All URIs are relative to *https://api.sparkworks.net*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CommandApi* | [**send_command**](docs/CommandApi.md#send_command) | **POST** /v2/command/{uuid} | Send a command to a SparkWorks Actuator Resource
-*DataApi* | [**get_latest_by_uuid**](docs/DataApi.md#get_latest_by_uuid) | **GET** /v2/resource/{uuid}/latest | Retrieve latest values for a Resource by its UUID
-*DataApi* | [**get_summary_by_uuid**](docs/DataApi.md#get_summary_by_uuid) | **GET** /v2/resource/{uuid}/summary | Retrieve summary for a Resource by its UUID
-*DataApi* | [**publish_data**](docs/DataApi.md#publish_data) | **POST** /v2/resource/data/publish | Publish data to Resources
-*DataApi* | [**query_latest**](docs/DataApi.md#query_latest) | **POST** /v2/resource/query/latest | Query the Data Service to retrieve a collection of Resource records with their latest values by their UUID
-*DataApi* | [**query_summary**](docs/DataApi.md#query_summary) | **POST** /v2/resource/query/summary | Query the Data Service to retrieve a collection of Resource records with their summaries by their UUID
-*DataApi* | [**query_time_range**](docs/DataApi.md#query_time_range) | **POST** /v2/resource/query/timerange | Retrieve timeranged data for a Resource
+*DataApi* | [**get_latest_by_uuid**](docs/DataApi.md#get_latest_by_uuid) | **GET** /v2/resource/{uuid}/latest | Retrieve latest values and analytics for a single Resource
+*DataApi* | [**get_summary_by_uuid**](docs/DataApi.md#get_summary_by_uuid) | **GET** /v2/resource/{uuid}/summary | Retrieve the data summary for a single Resource
+*DataApi* | [**publish_data**](docs/DataApi.md#publish_data) | **POST** /v2/resource/data/publish | Publish data to a single or multiple Resources
+*DataApi* | [**query_latest**](docs/DataApi.md#query_latest) | **POST** /v2/resource/query/latest | Retrieve the latest values received for multiple Resources
+*DataApi* | [**query_summary**](docs/DataApi.md#query_summary) | **POST** /v2/resource/query/summary | Retrieve the data summaries of mutliple Resource
+*DataApi* | [**query_time_range**](docs/DataApi.md#query_time_range) | **POST** /v2/resource/query/timerange | Retrieve analytics for a single Resource
+*DataApi* | [**query_time_range_raw**](docs/DataApi.md#query_time_range_raw) | **POST** /v2/resource/query/raw/timerange | Retrieve the raw data received for a single Resource
 *GatewayApi* | [**count_gateways**](docs/GatewayApi.md#count_gateways) | **GET** /v2/gateway/count | Count Gateways
 *GatewayApi* | [**create_gateway**](docs/GatewayApi.md#create_gateway) | **POST** /v2/gateway | Create a new Gateway
 *GatewayApi* | [**delete_gateway**](docs/GatewayApi.md#delete_gateway) | **DELETE** /v2/gateway/{uuid} | Delete Gateway by its UUID
@@ -220,7 +221,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AParticipatorySensingResourceRequestAPIModel](docs/AParticipatorySensingResourceRequestAPIModel.md)
- - [CollectionOfDataQueryCriteriaRequestAPIModel](docs/CollectionOfDataQueryCriteriaRequestAPIModel.md)
+ - [AnalyticsResourceDataResponseDTOAPIModel](docs/AnalyticsResourceDataResponseDTOAPIModel.md)
  - [CommandAPIModel](docs/CommandAPIModel.md)
  - [GatewayCreateDTO](docs/GatewayCreateDTO.md)
  - [GatewayDTO](docs/GatewayDTO.md)
@@ -229,23 +230,25 @@ Class | Method | HTTP request | Description
  - [GroupDTO](docs/GroupDTO.md)
  - [GroupNodeDTO](docs/GroupNodeDTO.md)
  - [GroupUpdateDTO](docs/GroupUpdateDTO.md)
- - [ListOfParticipatorySensingDataAPIModel](docs/ListOfParticipatorySensingDataAPIModel.md)
- - [ListOfQueryCriteriaWithinATimeframeRequestAPIModel](docs/ListOfQueryCriteriaWithinATimeframeRequestAPIModel.md)
- - [ParticipatorySensingDataAPIModel](docs/ParticipatorySensingDataAPIModel.md)
  - [PhenomenonCreateDTO](docs/PhenomenonCreateDTO.md)
  - [PhenomenonDTO](docs/PhenomenonDTO.md)
  - [PhenomenonQueryDTO](docs/PhenomenonQueryDTO.md)
  - [PhenomenonUpdateDTO](docs/PhenomenonUpdateDTO.md)
+ - [PublishDataDTOAPIModel](docs/PublishDataDTOAPIModel.md)
+ - [PublishDataListDTOAPIModel](docs/PublishDataListDTOAPIModel.md)
+ - [QueryLatestResourceDataDTOAPIModel](docs/QueryLatestResourceDataDTOAPIModel.md)
+ - [QueryLatestResourceDataResultDTOAPIModel](docs/QueryLatestResourceDataResultDTOAPIModel.md)
+ - [QueryRawDataTimeRangeDTOAPIModel](docs/QueryRawDataTimeRangeDTOAPIModel.md)
+ - [QueryRawDataTimeRangeResultDTOAPIModel](docs/QueryRawDataTimeRangeResultDTOAPIModel.md)
+ - [QueryResourceDataCriteriaDTOAPIModel](docs/QueryResourceDataCriteriaDTOAPIModel.md)
+ - [QueryTimeRangeResourceDataCriteriaDTOAPIModel](docs/QueryTimeRangeResourceDataCriteriaDTOAPIModel.md)
+ - [QueryTimeRangeResourceDataDTOAPIModel](docs/QueryTimeRangeResourceDataDTOAPIModel.md)
+ - [QueryTimeRangeResourceDataResultDTOAPIModel](docs/QueryTimeRangeResourceDataResultDTOAPIModel.md)
  - [RegistryPairDTO](docs/RegistryPairDTO.md)
  - [RegistryRecordDTO](docs/RegistryRecordDTO.md)
- - [ResourceAnalyticsDataResponseAPIModel](docs/ResourceAnalyticsDataResponseAPIModel.md)
  - [ResourceCreateDTO](docs/ResourceCreateDTO.md)
  - [ResourceDTO](docs/ResourceDTO.md)
- - [ResourceLatestDataResponseAPIModel](docs/ResourceLatestDataResponseAPIModel.md)
  - [ResourceLatestValuesResponseAPIModel](docs/ResourceLatestValuesResponseAPIModel.md)
- - [ResourceQueryCriteriaRequestAPIModel](docs/ResourceQueryCriteriaRequestAPIModel.md)
- - [ResourceQueryCriteriaRequestWithinATimeframeAPIModel](docs/ResourceQueryCriteriaRequestWithinATimeframeAPIModel.md)
- - [ResourceQueryCriteriaWithinATimeframeResponseAPIModel](docs/ResourceQueryCriteriaWithinATimeframeResponseAPIModel.md)
  - [ResourceQueryDTO](docs/ResourceQueryDTO.md)
  - [ResourceUpdateDTO](docs/ResourceUpdateDTO.md)
  - [SingleResourceMeasurementAPIModel](docs/SingleResourceMeasurementAPIModel.md)
