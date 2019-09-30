@@ -113,7 +113,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publish_ps_data**
-> ListOfParticipatorySensingDataAPIModel publish_ps_data(publish_data_list_dto)
+> PublishDataListDTOAPIModel publish_ps_data(publish_data_list_dto)
 
 Publish data to a Participatory Sensing Resource.
 
@@ -133,7 +133,7 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.ParticipatorySensingApi(sparkworks_client.ApiClient(configuration))
-publish_data_list_dto = sparkworks_client.ListOfParticipatorySensingDataAPIModel() # ListOfParticipatorySensingDataAPIModel | List of PublishDataDTO to be published to a participatory sensing resource.
+publish_data_list_dto = sparkworks_client.PublishDataListDTOAPIModel() # PublishDataListDTOAPIModel | List of PublishDataDTO to be published to a participatory sensing resource.
 
 try:
     # Publish data to a Participatory Sensing Resource.
@@ -147,11 +147,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **publish_data_list_dto** | [**ListOfParticipatorySensingDataAPIModel**](ListOfParticipatorySensingDataAPIModel.md)| List of PublishDataDTO to be published to a participatory sensing resource. | 
+ **publish_data_list_dto** | [**PublishDataListDTOAPIModel**](PublishDataListDTOAPIModel.md)| List of PublishDataDTO to be published to a participatory sensing resource. | 
 
 ### Return type
 
-[**ListOfParticipatorySensingDataAPIModel**](ListOfParticipatorySensingDataAPIModel.md)
+[**PublishDataListDTOAPIModel**](PublishDataListDTOAPIModel.md)
 
 ### Authorization
 

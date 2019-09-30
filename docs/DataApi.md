@@ -4,20 +4,21 @@ All URIs are relative to *https://api.sparkworks.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_latest_by_uuid**](DataApi.md#get_latest_by_uuid) | **GET** /v2/resource/{uuid}/latest | Retrieve latest values for a Resource by its UUID
-[**get_summary_by_uuid**](DataApi.md#get_summary_by_uuid) | **GET** /v2/resource/{uuid}/summary | Retrieve summary for a Resource by its UUID
-[**publish_data**](DataApi.md#publish_data) | **POST** /v2/resource/data/publish | Publish data to Resources
-[**query_latest**](DataApi.md#query_latest) | **POST** /v2/resource/query/latest | Query the Data Service to retrieve a collection of Resource records with their latest values by their UUID
-[**query_summary**](DataApi.md#query_summary) | **POST** /v2/resource/query/summary | Query the Data Service to retrieve a collection of Resource records with their summaries by their UUID
-[**query_time_range**](DataApi.md#query_time_range) | **POST** /v2/resource/query/timerange | Retrieve timeranged data for a Resource
+[**get_latest_by_uuid**](DataApi.md#get_latest_by_uuid) | **GET** /v2/resource/{uuid}/latest | Retrieve latest values and analytics for a single Resource
+[**get_summary_by_uuid**](DataApi.md#get_summary_by_uuid) | **GET** /v2/resource/{uuid}/summary | Retrieve the data summary for a single Resource
+[**publish_data**](DataApi.md#publish_data) | **POST** /v2/resource/data/publish | Publish data to a single or multiple Resources
+[**query_latest**](DataApi.md#query_latest) | **POST** /v2/resource/query/latest | Retrieve the latest values received for multiple Resources
+[**query_summary**](DataApi.md#query_summary) | **POST** /v2/resource/query/summary | Retrieve the data summaries of mutliple Resource
+[**query_time_range**](DataApi.md#query_time_range) | **POST** /v2/resource/query/timerange | Retrieve analytics for a single Resource
+[**query_time_range_raw**](DataApi.md#query_time_range_raw) | **POST** /v2/resource/query/raw/timerange | Retrieve the raw data received for a single Resource
 
 
 # **get_latest_by_uuid**
 > ResourceLatestValuesResponseAPIModel get_latest_by_uuid(uuid)
 
-Retrieve latest values for a Resource by its UUID
+Retrieve latest values and analytics for a single Resource
 
-A Spark Works Accounts authenticated common user is able to retrieve a Resource's latest values by its UUID. An administrator is able to get any Resource's latest values by its UUID.
+Retrieve the latest values received for a single Resource. The response contains the latest value received for the Resource, the timestamp of the measurement as well as the analytics calculated for this measurement for the last 5minute, hour, day and month interval.
 
 ### Example
 ```python
@@ -33,10 +34,10 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The unique identifier of the Resource
+uuid = 'uuid_example' # str | The UUID of the Resource
 
 try:
-    # Retrieve latest values for a Resource by its UUID
+    # Retrieve latest values and analytics for a single Resource
     api_response = api_instance.get_latest_by_uuid(uuid)
     pprint(api_response)
 except ApiException as e:
@@ -47,7 +48,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The unique identifier of the Resource | 
+ **uuid** | **str**| The UUID of the Resource | 
 
 ### Return type
 
@@ -67,9 +68,9 @@ Name | Type | Description  | Notes
 # **get_summary_by_uuid**
 > TheResourceSummaryDataAPIModel get_summary_by_uuid(uuid)
 
-Retrieve summary for a Resource by its UUID
+Retrieve the data summary for a single Resource
 
-A Spark Works Accounts authenticated common user is able to retrieve a Resource's summary by its UUID. An administrator is able to get any Resource's summary by its UUID.
+Retrieve a summary of the latest analytics calculated for a single Resource. The summary contains the latest calculated analytics for the Resource for the past 48 5minute, hour, day and month intervals.
 
 ### Example
 ```python
@@ -85,10 +86,10 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
-uuid = 'uuid_example' # str | The unique identifier of the Resource
+uuid = 'uuid_example' # str | The UUID of the Resource
 
 try:
-    # Retrieve summary for a Resource by its UUID
+    # Retrieve the data summary for a single Resource
     api_response = api_instance.get_summary_by_uuid(uuid)
     pprint(api_response)
 except ApiException as e:
@@ -99,7 +100,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The unique identifier of the Resource | 
+ **uuid** | **str**| The UUID of the Resource | 
 
 ### Return type
 
@@ -117,11 +118,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publish_data**
-> ListOfParticipatorySensingDataAPIModel publish_data(publish_data_list_dto=publish_data_list_dto)
+> PublishDataListDTOAPIModel publish_data(publish_data_list_dto=publish_data_list_dto)
 
-Publish data to Resources
+Publish data to a single or multiple Resources
 
-A Spark Works Accounts authenticated common user is able to publish data to all of the platform Resources info that has permissions on. An administrator is able to publish data to all of the platform Resources
+Publish data to a single or multiple Resources. Send data for processing for one or more Resources that you have permission to update.
 
 ### Example
 ```python
@@ -137,10 +138,10 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
-publish_data_list_dto = sparkworks_client.ListOfParticipatorySensingDataAPIModel() # ListOfParticipatorySensingDataAPIModel | List holding data to publish to specified Resources (optional)
+publish_data_list_dto = sparkworks_client.PublishDataListDTOAPIModel() # PublishDataListDTOAPIModel | Data to be published (optional)
 
 try:
-    # Publish data to Resources
+    # Publish data to a single or multiple Resources
     api_response = api_instance.publish_data(publish_data_list_dto=publish_data_list_dto)
     pprint(api_response)
 except ApiException as e:
@@ -151,11 +152,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **publish_data_list_dto** | [**ListOfParticipatorySensingDataAPIModel**](ListOfParticipatorySensingDataAPIModel.md)| List holding data to publish to specified Resources | [optional] 
+ **publish_data_list_dto** | [**PublishDataListDTOAPIModel**](PublishDataListDTOAPIModel.md)| Data to be published | [optional] 
 
 ### Return type
 
-[**ListOfParticipatorySensingDataAPIModel**](ListOfParticipatorySensingDataAPIModel.md)
+[**PublishDataListDTOAPIModel**](PublishDataListDTOAPIModel.md)
 
 ### Authorization
 
@@ -169,11 +170,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **query_latest**
-> ResourceLatestDataResponseAPIModel query_latest(query_latest_resource_data_dto)
+> QueryLatestResourceDataResultDTOAPIModel query_latest(query_latest_resource_data_dto)
 
-Query the Data Service to retrieve a collection of Resource records with their latest values by their UUID
+Retrieve the latest values received for multiple Resources
 
-A Spark Works Accounts authenticated common user is able to retrieve all of the platform Resources info that has permissions on. An administrator is able to query all of the platform Resources
+Retrieve the latest values received for multiple Resources. The response contains the latest value received for the Resource and the timestamp of the measurement. For more information on how to define the criteria check the method parameters.
 
 ### Example
 ```python
@@ -189,10 +190,10 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
-query_latest_resource_data_dto = sparkworks_client.CollectionOfDataQueryCriteriaRequestAPIModel() # CollectionOfDataQueryCriteriaRequestAPIModel | Collection of Data Query Criteria Request API Model
+query_latest_resource_data_dto = sparkworks_client.QueryLatestResourceDataDTOAPIModel() # QueryLatestResourceDataDTOAPIModel | Data query criteria
 
 try:
-    # Query the Data Service to retrieve a collection of Resource records with their latest values by their UUID
+    # Retrieve the latest values received for multiple Resources
     api_response = api_instance.query_latest(query_latest_resource_data_dto)
     pprint(api_response)
 except ApiException as e:
@@ -203,11 +204,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_latest_resource_data_dto** | [**CollectionOfDataQueryCriteriaRequestAPIModel**](CollectionOfDataQueryCriteriaRequestAPIModel.md)| Collection of Data Query Criteria Request API Model | 
+ **query_latest_resource_data_dto** | [**QueryLatestResourceDataDTOAPIModel**](QueryLatestResourceDataDTOAPIModel.md)| Data query criteria | 
 
 ### Return type
 
-[**ResourceLatestDataResponseAPIModel**](ResourceLatestDataResponseAPIModel.md)
+[**QueryLatestResourceDataResultDTOAPIModel**](QueryLatestResourceDataResultDTOAPIModel.md)
 
 ### Authorization
 
@@ -223,9 +224,9 @@ Name | Type | Description  | Notes
 # **query_summary**
 > TheResourceSummaryDataAPIModel query_summary(query_resource_data_criteria_dto)
 
-Query the Data Service to retrieve a collection of Resource records with their summaries by their UUID
+Retrieve the data summaries of mutliple Resource
 
-A Spark Works Accounts authenticated common user is able to retrieve all of the platform Resources info that has permissions on. An administrator is able to query all of the platform Resources
+Retrieve the data summaries received of multiple Resources. The response contains the summary with calculated analytics for each Resource for the past 48 5minute, hour, day and month intervals. A single summary is returned for each Resource
 
 ### Example
 ```python
@@ -241,10 +242,10 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
-query_resource_data_criteria_dto = sparkworks_client.ResourceQueryCriteriaRequestAPIModel() # ResourceQueryCriteriaRequestAPIModel | Resource Query Criteria Request API Model
+query_resource_data_criteria_dto = sparkworks_client.QueryResourceDataCriteriaDTOAPIModel() # QueryResourceDataCriteriaDTOAPIModel | Data query criteria
 
 try:
-    # Query the Data Service to retrieve a collection of Resource records with their summaries by their UUID
+    # Retrieve the data summaries of mutliple Resource
     api_response = api_instance.query_summary(query_resource_data_criteria_dto)
     pprint(api_response)
 except ApiException as e:
@@ -255,7 +256,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_resource_data_criteria_dto** | [**ResourceQueryCriteriaRequestAPIModel**](ResourceQueryCriteriaRequestAPIModel.md)| Resource Query Criteria Request API Model | 
+ **query_resource_data_criteria_dto** | [**QueryResourceDataCriteriaDTOAPIModel**](QueryResourceDataCriteriaDTOAPIModel.md)| Data query criteria | 
 
 ### Return type
 
@@ -275,9 +276,9 @@ Name | Type | Description  | Notes
 # **query_time_range**
 > TheResourceSummaryDataAPIModel query_time_range(query_time_range_resource_data_dto)
 
-Retrieve timeranged data for a Resource
+Retrieve analytics for a single Resource
 
-A Spark Works Accounts authenticated common user is able to retrieve a Resource's timeranged data that has permissions. An administrator is able to get any Resource's timeranged data.
+Retrieve analytics for a single Resource on multiple intervals and granularities. The response contains the latest calculated analytics for the Resource based on the query criteria provided with the request. For more information on how to define the criteria check the method parameters.
 
 ### Example
 ```python
@@ -293,10 +294,10 @@ configuration.connect()
 
 # create an instance of the API class
 api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
-query_time_range_resource_data_dto = sparkworks_client.ListOfQueryCriteriaWithinATimeframeRequestAPIModel() # ListOfQueryCriteriaWithinATimeframeRequestAPIModel | Collection of timerange criteria to request Resource Data
+query_time_range_resource_data_dto = sparkworks_client.QueryTimeRangeResourceDataDTOAPIModel() # QueryTimeRangeResourceDataDTOAPIModel | Timerange criteria
 
 try:
-    # Retrieve timeranged data for a Resource
+    # Retrieve analytics for a single Resource
     api_response = api_instance.query_time_range(query_time_range_resource_data_dto)
     pprint(api_response)
 except ApiException as e:
@@ -307,11 +308,63 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_time_range_resource_data_dto** | [**ListOfQueryCriteriaWithinATimeframeRequestAPIModel**](ListOfQueryCriteriaWithinATimeframeRequestAPIModel.md)| Collection of timerange criteria to request Resource Data | 
+ **query_time_range_resource_data_dto** | [**QueryTimeRangeResourceDataDTOAPIModel**](QueryTimeRangeResourceDataDTOAPIModel.md)| Timerange criteria | 
 
 ### Return type
 
 [**TheResourceSummaryDataAPIModel**](TheResourceSummaryDataAPIModel.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_time_range_raw**
+> QueryRawDataTimeRangeResultDTOAPIModel query_time_range_raw(query_raw_data_time_range_dto)
+
+Retrieve the raw data received for a single Resource
+
+Retrieve the raw data received for a single Resource over a specified time interval. This method retrieves from the raw data storage and depending on the amount of data that need to be accessed may take longer time to respond. If your get a response timeout you may need to limit the requested time range.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sparkworks_client
+from sparkworks_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = sparkworks_client.Configuration("username", "password", "client_id", "client_secret")
+configuration.connect()
+
+# create an instance of the API class
+api_instance = sparkworks_client.DataApi(sparkworks_client.ApiClient(configuration))
+query_raw_data_time_range_dto = sparkworks_client.QueryRawDataTimeRangeDTOAPIModel() # QueryRawDataTimeRangeDTOAPIModel | Raw Data Timerange Criteria
+
+try:
+    # Retrieve the raw data received for a single Resource
+    api_response = api_instance.query_time_range_raw(query_raw_data_time_range_dto)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DataApi->query_time_range_raw: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_raw_data_time_range_dto** | [**QueryRawDataTimeRangeDTOAPIModel**](QueryRawDataTimeRangeDTOAPIModel.md)| Raw Data Timerange Criteria | 
+
+### Return type
+
+[**QueryRawDataTimeRangeResultDTOAPIModel**](QueryRawDataTimeRangeResultDTOAPIModel.md)
 
 ### Authorization
 
