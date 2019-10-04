@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **query_time_range**
-> TheResourceSummaryDataAPIModel query_time_range(query_time_range_resource_data_dto)
+> QueryTimeRangeResourceDataResultDTOAPIModel query_time_range(query_time_range_resource_data_dto)
 
 Retrieve analytics for a single Resource
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TheResourceSummaryDataAPIModel**](TheResourceSummaryDataAPIModel.md)
+[**QueryTimeRangeResourceDataResultDTOAPIModel**](QueryTimeRangeResourceDataResultDTOAPIModel.md)
 
 ### Authorization
 
