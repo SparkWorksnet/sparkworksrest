@@ -22,7 +22,7 @@ pip install sparkworksrest
 
 Then import the package:
 ```python
-import sparkworks_client 
+import sparkworks_client
 ```
 
 ## Setting up the access to the SparkWorks Rest API
